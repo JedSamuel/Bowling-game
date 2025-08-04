@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bowling Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <header>
+            <h1>🎳 Bowling Game</h1>
+            <div class="game-info">
+                <div class="frame-info">Frame: <span id="current-frame">1</span>/10</div>
+                <div class="roll-info">Roll: <span id="current-roll">1</span></div>
+            </div>
+        </header>
+
+        <div class="scoreboard">
+            <div class="frames">
+                <div class="frame" id="frame-1">
+                    <div class="frame-number">1</div>
+                    <div class="rolls">
+                        <span class="roll" id="frame-1-roll-1">-</span>
+                        <span class="roll" id="frame-1-roll-2">-</span>
+                    </div>
+                    <div class="frame-score" id="frame-1-score">0</div>
+                </div>
+                <div class="frame" id="frame-2">
+                    <div class="frame-number">2</div>
+                    <div class="rolls">
+                        <span class="roll" id="frame-2-roll-1">-</span>
+                        <span class="roll" id="frame-2-roll-2">-</span>
+                    </div>
+                    <div class="frame-score" id="frame-2-score">0</div>
+                </div>
+                <div class="frame" id="frame-3">
+                    <div class="frame-number">3</div>
+                    <div class="rolls">
+                        <span class="roll" id="frame-3-roll-1">-</span>
+                        <span class="roll" id="frame-3-roll-2">-</span>
+                    </div>
+                    <div class="frame-score" id="frame-3-score">0</div>
+                </div>
+                <div class="frame" id="frame-4">
+                    <div class="frame-number">4</div>
+                    <div class="rolls">
+                        <span class="roll" id="frame-4-roll-1">-</span>
+                        <span class="roll" id="frame-4-roll-2">-</span>
+                    </div>
+                    <div class="frame-score" id="frame-4-score">0</div>
+                </div>
+                <div class="frame" id="frame-5">
+                    <div class="frame-number">5</div>
+                    <div class="rolls">
+                        <span class="roll" id="frame-5-roll-1">-</span>
+                        <span class="roll" id="frame-5-roll-2">-</span>
+                    </div>
+                    <div class="frame-score" id="frame-5-score">0</div>
+                </div>
+                <div class="frame" id="frame-6">
+                    <div class="frame-number">6</div>
+                    <div class="rolls">
+                        <span class="roll" id="frame-6-roll-1">-</span>
+                        <span class="roll" id="frame-6-roll-2">-</span>
+                    </div>
+                    <div class="frame-score" id="frame-6-score">0</div>
+                </div>
+                <div class="frame" id="frame-7">
+                    <div class="frame-number">7</div>
+                    <div class="rolls">
+                        <span class="roll" id="frame-7-roll-1">-</span>
+                        <span class="roll" id="frame-7-roll-2">-</span>
+                    </div>
+                    <div class="frame-score" id="frame-7-score">0</div>
+                </div>
+                <div class="frame" id="frame-8">
+                    <div class="frame-number">8</div>
+                    <div class="rolls">
+                        <span class="roll" id="frame-8-roll-1">-</span>
+                        <span class="roll" id="frame-8-roll-2">-</span>
+                    </div>
+                    <div class="frame-score" id="frame-8-score">0</div>
+                </div>
+                <div class="frame" id="frame-9">
+                    <div class="frame-number">9</div>
+                    <div class="rolls">
+                        <span class="roll" id="frame-9-roll-1">-</span>
+                        <span class="roll" id="frame-9-roll-2">-</span>
+                    </div>
+                    <div class="frame-score" id="frame-9-score">0</div>
+                </div>
+                <div class="frame tenth-frame" id="frame-10">
+                    <div class="frame-number">10</div>
+                    <div class="rolls">
+                        <span class="roll" id="frame-10-roll-1">-</span>
+                        <span class="roll" id="frame-10-roll-2">-</span>
+                        <span class="roll" id="frame-10-roll-3">-</span>
+                    </div>
+                    <div class="frame-score" id="frame-10-score">0</div>
+                </div>
+            </div>
+            <div class="total-score">
+                Total Score: <span id="total-score">0</span>
+            </div>
+        </div>
+
+        <div class="bowling-alley">
+            <div class="pins-container">
+                <div class="pin" id="pin-1">
+                    <div class="person">
+                        <div class="head">
+                            <div class="eyes">
+                                <div class="eye left happy"></div>
+                                <div class="eye right happy"></div>
+                            </div>
+                            <div class="nose"></div>
+                            <div class="mouth smile"></div>
+                        </div>
+                        <div class="body"></div>
+                        <div class="arms">
+                            <div class="arm left"></div>
+                            <div class="arm right"></div>
+                        </div>
+                        <div class="legs">
+                            <div class="leg left"></div>
+                            <div class="leg right"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pin" id="pin-2">
+                    <div class="person">
+                        <div class="head">
+                            <div class="eyes">
+                                <div class="eye left wink"></div>
+                                <div class="eye right normal"></div>
+                            </div>
+                            <div class="nose"></div>
+                            <div class="mouth grin"></div>
+                        </div>
+                        <div class="body"></div>
+                        <div class="arms">
+                            <div class="arm left"></div>
+                            <div class="arm right"></div>
+                        </div>
+                        <div class="legs">
+                            <div class="leg left"></div>
+                            <div class="leg right"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pin" id="pin-3">
+                    <div class="person">
+                        <div class="head">
+                            <div class="eyes">
+                                <div class="eye left surprised"></div>
+                                <div class="eye right surprised"></div>
+                            </div>
+                            <div class="nose"></div>
+                            <div class="mouth oh"></div>
+                        </div>
+                        <div class="body"></div>
+                        <div class="arms">
+                            <div class="arm left"></div>
+                            <div class="arm right"></div>
+                        </div>
+                        <div class="legs">
+                            <div class="leg left"></div>
+                            <div class="leg right"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pin" id="pin-4">
+                    <div class="person">
+                        <div class="head">
+                            <div class="eyes">
+                                <div class="eye left sleepy"></div>
+                                <div class="eye right sleepy"></div>
+                            </div>
+                            <div class="nose"></div>
+                            <div class="mouth neutral"></div>
+                        </div>
+                        <div class="body"></div>
+                        <div class="arms">
+                            <div class="arm left"></div>
+                            <div class="arm right"></div>
+                        </div>
+                        <div class="legs">
+                            <div class="leg left"></div>
+                            <div class="leg right"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pin" id="pin-5">
+                    <div class="person bully">
+                        <div class="head">
+                            <div class="eyes">
+                                <div class="eye left angry"></div>
+                                <div class="eye right angry"></div>
+                            </div>
+                            <div class="nose"></div>
+                            <div class="mouth frown"></div>
+                        </div>
+                        <div class="body"></div>
+                        <div class="arms">
+                            <div class="arm left"></div>
+                            <div class="arm right"></div>
+                        </div>
+                        <div class="legs">
+                            <div class="leg left"></div>
+                            <div class="leg right"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pin" id="pin-6">
+                    <div class="person">
+                        <div class="head">
+                            <div class="eyes">
+                                <div class="eye left love"></div>
+                                <div class="eye right love"></div>
+                            </div>
+                            <div class="nose"></div>
+                            <div class="mouth kiss"></div>
+                        </div>
+                        <div class="body"></div>
+                        <div class="arms">
+                            <div class="arm left"></div>
+                            <div class="arm right"></div>
+                        </div>
+                        <div class="legs">
+                            <div class="leg left"></div>
+                            <div class="leg right"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pin" id="pin-7">
+                    <div class="person bully">
+                        <div class="head">
+                            <div class="eyes">
+                                <div class="eye left cool"></div>
+                                <div class="eye right cool"></div>
+                            </div>
+                            <div class="nose"></div>
+                            <div class="mouth smirk"></div>
+                        </div>
+                        <div class="body"></div>
+                        <div class="arms">
+                            <div class="arm left"></div>
+                            <div class="arm right"></div>
+                        </div>
+                        <div class="legs">
+                            <div class="leg left"></div>
+                            <div class="leg right"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pin" id="pin-8">
+                    <div class="person">
+                        <div class="head">
+                            <div class="eyes">
+                                <div class="eye left worried"></div>
+                                <div class="eye right worried"></div>
+                            </div>
+                            <div class="nose"></div>
+                            <div class="mouth worried"></div>
+                        </div>
+                        <div class="body"></div>
+                        <div class="arms">
+                            <div class="arm left"></div>
+                            <div class="arm right"></div>
+                        </div>
+                        <div class="legs">
+                            <div class="leg left"></div>
+                            <div class="leg right"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pin" id="pin-9">
+                    <div class="person">
+                        <div class="head">
+                            <div class="eyes">
+                                <div class="eye left excited"></div>
+                                <div class="eye right excited"></div>
+                            </div>
+                            <div class="nose"></div>
+                            <div class="mouth laugh"></div>
+                        </div>
+                        <div class="body"></div>
+                        <div class="arms">
+                            <div class="arm left"></div>
+                            <div class="arm right"></div>
+                        </div>
+                        <div class="legs">
+                            <div class="leg left"></div>
+                            <div class="leg right"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pin" id="pin-10">
+                    <div class="person bully">
+                        <div class="head">
+                            <div class="eyes">
+                                <div class="eye left confused"></div>
+                                <div class="eye right confused"></div>
+                            </div>
+                            <div class="nose"></div>
+                            <div class="mouth confused"></div>
+                        </div>
+                        <div class="body"></div>
+                        <div class="arms">
+                            <div class="arm left"></div>
+                            <div class="arm right"></div>
+                        </div>
+                        <div class="legs">
+                            <div class="leg left"></div>
+                            <div class="leg right"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="lane"></div>
+            <div class="ball" id="ball"></div>
+        </div>
+
+        <div class="controls">
+            <div class="power-control">
+                <label for="power">Power:</label>
+                <input type="range" id="power" min="1" max="10" value="5">
+                <span id="power-value">5</span>
+            </div>
+            <div class="accuracy-control">
+                <label for="accuracy">Accuracy:</label>
+                <input type="range" id="accuracy" min="1" max="10" value="5">
+                <span id="accuracy-value">5</span>
+            </div>
+            <button id="roll-button" class="roll-btn">🎳 ROLL!</button>
+            <button id="reset-button" class="reset-btn">🔄 New Game</button>
+        </div>
+
+        <div class="game-status">
+            <div id="status-message">Ready to roll! Adjust power and accuracy, then click ROLL!</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

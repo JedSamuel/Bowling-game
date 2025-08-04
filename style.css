@@ -1,0 +1,739 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+.game-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    color: white;
+}
+
+header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.game-info {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.scoreboard {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.frames {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.frame {
+    border: 2px solid #333;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    background: #f8f9fa;
+    transition: all 0.3s ease;
+}
+
+.frame.active {
+    background: #e3f2fd;
+    border-color: #2196f3;
+    transform: scale(1.05);
+}
+
+.frame-number {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: #666;
+}
+
+.rolls {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 5px;
+}
+
+.roll {
+    background: #e0e0e0;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.tenth-frame .rolls {
+    gap: 3px;
+}
+
+.tenth-frame .roll {
+    width: 20px;
+    height: 20px;
+    font-size: 0.8rem;
+}
+
+.frame-score {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #2196f3;
+    margin-top: 5px;
+}
+
+.total-score {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #4caf50;
+    background: #f0f8f0;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.bowling-alley {
+    background: linear-gradient(to bottom, #8b4513 0%, #a0522d 50%, #654321 100%);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 30px;
+    position: relative;
+    min-height: 300px;
+    box-shadow: inset 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.pins-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 10px;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 20px;
+    position: relative;
+}
+
+.pin {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    transition: all 0.5s ease;
+    cursor: pointer;
+    height: 40px;
+}
+
+.pin:hover .person {
+    transform: scale(1.1);
+}
+
+.pin.knocked-down .person {
+    opacity: 0.4;
+    transform: rotate(90deg) scale(0.8);
+}
+
+.person {
+    position: relative;
+    width: 20px;
+    height: 35px;
+    transition: all 0.5s ease;
+}
+
+.person.bully {
+    animation: none;
+}
+
+.person.bully.bullying {
+    animation: bully-dance 1s ease-in-out infinite;
+}
+
+@keyframes bully-dance {
+    0%, 100% { transform: rotate(-5deg) scale(1.1); }
+    25% { transform: rotate(5deg) scale(1.1); }
+    50% { transform: rotate(-3deg) scale(1.1); }
+    75% { transform: rotate(3deg) scale(1.1); }
+}
+
+.head {
+    width: 12px;
+    height: 12px;
+    background: radial-gradient(circle at 30% 30%, #ffdbac, #d4a574);
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+/* Facial Features */
+.eyes {
+    position: absolute;
+    top: 3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 2px;
+}
+
+.eye {
+    width: 2px;
+    height: 2px;
+    background: #333;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+}
+
+.eye.left { left: 1px; }
+.eye.right { right: 1px; }
+
+/* Eye Expressions */
+.eye.happy {
+    background: #333;
+    border-radius: 50% 50% 0 0;
+    transform: rotate(20deg);
+}
+
+.eye.wink {
+    background: #333;
+    border-radius: 50%;
+    transform: scaleY(0.2);
+}
+
+.eye.normal {
+    background: #333;
+    border-radius: 50%;
+}
+
+.eye.surprised {
+    background: #333;
+    border-radius: 50%;
+    transform: scale(1.5);
+}
+
+.eye.sleepy {
+    background: #333;
+    border-radius: 50%;
+    transform: scaleY(0.3);
+}
+
+.eye.angry {
+    background: #333;
+    border-radius: 50%;
+    transform: rotate(-15deg) scaleX(1.2);
+}
+
+.eye.love {
+    background: #e74c3c;
+    border-radius: 50%;
+    transform: rotate(45deg);
+    width: 2px;
+    height: 2px;
+}
+
+.eye.love::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: #e74c3c;
+    border-radius: 50%;
+    top: -1px;
+    left: 1px;
+    transform: rotate(-90deg);
+}
+
+.eye.cool {
+    background: #333;
+    border-radius: 0;
+    width: 3px;
+    height: 1px;
+    transform: none;
+}
+
+.eye.worried {
+    background: #333;
+    border-radius: 50%;
+    transform: rotate(10deg);
+}
+
+.eye.excited {
+    background: #333;
+    border-radius: 50%;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 90% { transform: scaleY(1); }
+    95% { transform: scaleY(0.1); }
+}
+
+.eye.confused {
+    background: #333;
+    border-radius: 50%;
+    transform: rotate(-10deg);
+}
+
+.nose {
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 1px;
+    background: #d4a574;
+    border-radius: 50%;
+}
+
+.mouth {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 2px;
+}
+
+/* Mouth Expressions */
+.mouth.smile {
+    border: 1px solid #333;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    background: none;
+}
+
+.mouth.grin {
+    border: 1px solid #333;
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    background: none;
+    width: 5px;
+}
+
+.mouth.oh {
+    background: #333;
+    border-radius: 50%;
+    width: 2px;
+    height: 2px;
+}
+
+.mouth.neutral {
+    background: #333;
+    border-radius: 0;
+    width: 3px;
+    height: 1px;
+}
+
+.mouth.frown {
+    border: 1px solid #333;
+    border-bottom: none;
+    border-radius: 4px 4px 0 0;
+    background: none;
+}
+
+.mouth.kiss {
+    background: #e74c3c;
+    border-radius: 50%;
+    width: 2px;
+    height: 2px;
+}
+
+.mouth.smirk {
+    border: 1px solid #333;
+    border-top: none;
+    border-left: none;
+    border-radius: 0 0 4px 0;
+    background: none;
+    width: 3px;
+}
+
+.mouth.worried {
+    border: 1px solid #333;
+    border-bottom: none;
+    border-radius: 3px 3px 0 0;
+    background: none;
+    width: 3px;
+    transform: translateX(-50%) rotate(-5deg);
+}
+
+.mouth.laugh {
+    border: 2px solid #333;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    background: none;
+    width: 6px;
+    height: 3px;
+}
+
+.mouth.confused {
+    background: #333;
+    border-radius: 0;
+    width: 2px;
+    height: 1px;
+    transform: translateX(-50%) rotate(15deg);
+}
+
+.body {
+    width: 12px;
+    height: 16px;
+    background: linear-gradient(135deg, #4a90e2, #357abd);
+    border-radius: 6px;
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 
+        inset -2px -2px 4px rgba(0,0,0,0.2),
+        inset 2px 2px 4px rgba(255,255,255,0.3),
+        0 2px 4px rgba(0,0,0,0.2);
+}
+
+.arms {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 8px;
+}
+
+.arm {
+    width: 8px;
+    height: 3px;
+    background: linear-gradient(135deg, #ffdbac, #d4a574);
+    border-radius: 2px;
+    position: absolute;
+    top: 0;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.arm.left {
+    left: -2px;
+    transform: rotate(-20deg);
+}
+
+.arm.right {
+    right: -2px;
+    transform: rotate(20deg);
+}
+
+.legs {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+}
+
+.leg {
+    width: 4px;
+    height: 12px;
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    border-radius: 2px;
+    position: absolute;
+    bottom: 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.leg.left {
+    left: 2px;
+}
+
+.leg.right {
+    right: 2px;
+}
+
+/* Pin positioning for traditional 10-pin setup */
+.pin:nth-child(1) { grid-column: 2; grid-row: 1; } /* Head pin */
+.pin:nth-child(2) { grid-column: 1; grid-row: 2; }
+.pin:nth-child(3) { grid-column: 3; grid-row: 2; }
+.pin:nth-child(4) { grid-column: 1; grid-row: 3; }
+.pin:nth-child(5) { grid-column: 2; grid-row: 3; }
+.pin:nth-child(6) { grid-column: 3; grid-row: 3; }
+.pin:nth-child(7) { grid-column: 1; grid-row: 4; }
+.pin:nth-child(8) { grid-column: 2; grid-row: 4; }
+.pin:nth-child(9) { grid-column: 3; grid-row: 4; }
+.pin:nth-child(10) { grid-column: 4; grid-row: 4; }
+
+.lane {
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(to right, #deb887 0%, #f5deb3 50%, #deb887 100%);
+    border-radius: 10px;
+    margin: 20px 0;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.ball {
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle at 30% 30%, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57);
+    border-radius: 50%;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 1s ease;
+    box-shadow: 
+        inset -5px -5px 10px rgba(255,255,255,0.3),
+        inset 5px 5px 10px rgba(0,0,0,0.2),
+        0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+}
+
+.ball::before {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #222;
+    border-radius: 50%;
+    top: 12px;
+    left: 18px;
+    box-shadow: 
+        6px 2px 0 #222,
+        3px 8px 0 #222;
+}
+
+.ball.rolling {
+    animation: roll 1s ease-out forwards;
+}
+
+@keyframes roll {
+    0% {
+        bottom: 20px;
+        transform: translateX(-50%) rotate(0deg);
+    }
+    100% {
+        bottom: 200px;
+        transform: translateX(-50%) rotate(360deg);
+    }
+}
+
+/* Explosion Effect */
+.explosion {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.explosion::before {
+    content: '💥';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 60px;
+    animation: explode 1s ease-out forwards;
+}
+
+@keyframes explode {
+    0% {
+        transform: translate(-50%, -50%) scale(0) rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.5) rotate(180deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(2) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.explosion-particles {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 2px;
+    height: 2px;
+}
+
+.explosion-particles::before,
+.explosion-particles::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #ff6b6b;
+    border-radius: 50%;
+    animation: particle-burst 1s ease-out forwards;
+}
+
+.explosion-particles::before {
+    animation-delay: 0.1s;
+}
+
+.explosion-particles::after {
+    background: #feca57;
+    animation-delay: 0.2s;
+}
+
+@keyframes particle-burst {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1) translate(30px, -30px);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0) translate(60px, -60px);
+        opacity: 0;
+    }
+}
+
+.controls {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.power-control, .accuracy-control {
+    margin-bottom: 20px;
+}
+
+.power-control label, .accuracy-control label {
+    display: inline-block;
+    width: 80px;
+    font-weight: bold;
+    color: #333;
+}
+
+.power-control input, .accuracy-control input {
+    width: 200px;
+    margin: 0 10px;
+}
+
+.power-control span, .accuracy-control span {
+    font-weight: bold;
+    color: #2196f3;
+    min-width: 20px;
+    display: inline-block;
+}
+
+.roll-btn, .reset-btn {
+    background: linear-gradient(45deg, #4caf50, #45a049);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.roll-btn:hover, .reset-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(0,0,0,0.3);
+}
+
+.roll-btn:active, .reset-btn:active {
+    transform: translateY(0);
+}
+
+.roll-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.reset-btn {
+    background: linear-gradient(45deg, #f44336, #d32f2f);
+}
+
+.game-status {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+#status-message {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.strike {
+    color: #ff5722 !important;
+    font-weight: bold;
+}
+
+.spare {
+    color: #ff9800 !important;
+    font-weight: bold;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .game-container {
+        padding: 10px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .frames {
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    }
+    
+    .game-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .controls {
+        padding: 20px;
+    }
+    
+    .power-control input, .accuracy-control input {
+        width: 150px;
+    }
+}
